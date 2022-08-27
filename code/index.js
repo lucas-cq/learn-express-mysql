@@ -45,19 +45,23 @@ app
                 first_name,
                 last_name,
                 phone,
+                email,
                 date_added
             ) VALUES (
                 @firstName,
                 @lastName,
                 @phone,
+                @email,
             NOW()
             )
         `, {
             firstName: body.first,
             lastName: body.last,
             phone: body.phone,
+            email: body.email,
         });
-        res.end('Added User')
+        res.contentType('html');
+        res.end(`<p>Thanks ${body.first}! Your form has been submitted and we will be in contact shortly.</p>`)
     })
 
     .listen(port, () => console.log(`Server listening on port ${port}`))
